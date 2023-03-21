@@ -291,9 +291,16 @@ def getYuantsongdaw () :
             print('已扫描完《%s》。'%articleName)
         print('\n----------已扫描完%s----------\n'%page[0])
     
-    #with open('corpus/raw/YuanTsongDaw.json', 'w', encoding='utf-8') as f:
-    #    json.dump(articleList, f, ensure_ascii=False, indent=4)
+    with open('corpus/raw/YuanTsongDaw.json', 'w', encoding='utf-8') as f:
+        json.dump(articleList, f, ensure_ascii=False, indent=4)
 
-getYuantsongdaw ()
 
-print('结束。')
+if __name__ == '__main__' :
+    getFangbao ()
+    getLyoudahkwei ()
+    getYaunaai ()
+    getYuanhorngdaw ()
+    getYuanjongdaw ()
+    getYuantsongdaw ()
+
+    print('结束。')
