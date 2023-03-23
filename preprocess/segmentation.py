@@ -29,7 +29,7 @@ def wordSegmentation (sentences:list[str], model:str) -> list[str] :
     '''
     傳入句子列表，傳出詞袋列表
     '''
-    if model = 'jiayan' :
+    if model == 'jiayan' :
         tokenizer = CharHMMTokenizer(lm)#隱馬爾可夫模型分詞
         wordBag:list[str] = []
         for sentence in sentences :
@@ -38,26 +38,42 @@ def wordSegmentation (sentences:list[str], model:str) -> list[str] :
         wordBag = [word for word in wordBag if word not in punc]#清除標點符號
     return wordBag
 
-def excution (articleList:list, phay:str, name:str) :
+num = 1
+totalCorpus:dict = dict()
+
+def excution (articleList:list, phay:str, name:str, punc:bool) :
+    global totalCorpus, num
     personalList:list[list] = []
     for article in articleList :
-        segmented = wordSegmentation(sentenceSegmentation(article['content']))
+        segmented = wordSegmentation(sentenceSegmentation(article['content'], punc), 'jiayan')
         info = [phay, name, segmented]
         totalCorpus[num] = info
+        title = article['title']
+        print (f'完成《{title}》。')
         num += 1
 
 if __name__ == '__main__' :
-    num = 1
-    totalCorpus:dict = dict()
     with open('raw/fangBao.json', 'r', encoding='utf-8') as f:
-        excution (json.load(f), 'torngcherng', 'FangBao')
+        excution (json.load(f), 'torngcherng', 'FangBao', False)
+        print('完成方苞作品。')
     with open('raw/LyouDahKwei.json', 'r', encoding='utf-8') as f:
-        excution (json.load(f), 'torngcherng', 'LyouDahKwei')
+        excution (json.load(f), 'torngcherng', 'LyouDahKwei', False)
+        print('完成劉大櫆組品。')
     with open('raw/YauNaai.json', 'r', encoding='utf-8') as f:
-        excution (json.load(f), 'torngcherng', 'YauNay')
+        excution (json.load(f), 'torngcherng', 'YauNay', True)
+        print('完成姚鼐作品。')
     with open('raw/YuanHorngDaw.json', 'r', encoding='utf-8') as f:
-        excution (json.load(f), 'torngcherng', 'YuanHorngDaw')
+        excution (json.load(f), 'gongan', 'YuanHorngDaw', False)
+        print('完成袁宏道作品。')
     with open('raw/YuanJongDaw.json', 'r', encoding='utf-8') as f:
-        excution (json.load(f), 'torngcherng', 'YuanJongDaw')
+        excution (json.load(f), 'gongan', 'YuanJongDaw', True)
+        print('完成袁中道作品。')
     with open('raw/YuanTsongDaw.json', 'r', encoding='utf-8') as f:
-        excution (json.load(f), 'torngcherng', 'YuanTsongDaw')
+        excution (json.load(f), 'gongan', 'YuanTsongDaw', True)
+        print('完成袁宗道。')
+    #左存儲
+    with open('segmented.json', 'w', encoding='utf-8') as f:
+        json.dump(totalCorpus, f, ensure_ascii=False, indent=4)
+    print('全部完成。')
+    a = input()
+    b = input()
