@@ -1,6 +1,5 @@
 import json
 import numpy as np
-from sklearn.metrics import confusion_matrix, classification_report, roc_auc_score
 
 with open ('corpus/segmented.json', 'r', encoding='utf-8') as f :
     corpus = json.load(f)
@@ -68,4 +67,30 @@ def sift (fang:str, x_train, x_test, y_train, topN:int=1000, threshold=0.0002) :
         x_test = x_test[:,sel_index]
     return x_train, x_test
 
-def 
+def classify (x_train, y_train, x_test, y_test, algorithm) :
+    if algorithm == 'SVM' :
+        from sklearn.svm import SVC, LinearSVC
+        clf = SVC(probability=True, kernel='linear').fit(x_train, y_train)
+    if algorithm == 'randomForest' :
+        from sklearn.ensemble import RandomForestClassifier
+        clf = RandomForestClassifier(max_depth=2, random_state=0).fit(x_train, y_train)
+    if algorithm == 'log' :
+        from sklearn.linear_model import LogisticRegression
+        clf = LogisticRegression(solver="liblinear", random_state=0).fit(x_train, y_train)
+    if algorithm == 'bayes' :
+        from sklearn.naive_bayes import GaussianNB
+        clf = GaussianNB().fit(x_train, y_train)
+    if algorithm == 'kNeighbour' :
+        from sklearn.neighbors import KNeighborsClassifier
+        clf = KNeighborsClassifier(n_neighbors=5).fit(x_train, y_train)
+    if algorithm == 'tree' :
+        from sklearn import tree
+        clf = tree.DecisionTreeClassifier().fit(x_train, y_train)
+    classified = clf.predict(x_test)
+    return classified
+
+def report (x_train, y_train, x_test, y_test, y_classified) :
+    from sklearn.metrics import confusion_matrix, classification_report, roc_auc_score
+    print(classification_report(y_test, clf.predict(x_test),digits=8))
+    print(confusion_matrix(y_test, clf.predict(x_test)))
+    print(roc_auc_score(y_test, clf.predict(x_test)))
