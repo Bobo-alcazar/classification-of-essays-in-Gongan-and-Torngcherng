@@ -7,7 +7,7 @@ ltp = LTP('D:/LTP/base2')
 import json
 
 
-punc = ['，','。','；','“','”','「','」','‘','’','『','』','.','《','》','〈','〉','、','/','／','？','！']
+punc = ['，','。','；','“','”','「','」','‘','’','『','』','.','《','》','〈','〉','、','/','／','？','！', ':', '：']
 
 def sentenceSegmentation (paragraph:str, includePunctuation:bool) ->list[str] :
     '''

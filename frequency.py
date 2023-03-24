@@ -11,10 +11,10 @@ for num,content in corpus.items() :
     if content[0] == 'torngcherng' :
         TC.extend(content[2])
     if content[0] == 'gongan' :
-        TC.extend(content[2])
+        GA.extend(content[2])
 
 dexTC = Counter(TC)
-print(dex.most_common(80))
+print(dexTC.most_common(80))
 
 dexGA = Counter(GA)
-print(dex.most_common(80))
+print(dexGA.most_common(80))
