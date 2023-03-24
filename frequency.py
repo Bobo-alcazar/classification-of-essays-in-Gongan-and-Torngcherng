@@ -12,9 +12,13 @@ for num,content in corpus.items() :
         TC.extend(content[2])
     if content[0] == 'gongan' :
         GA.extend(content[2])
+tsong = TC + GA
 
 dexTC = Counter(TC)
 print(dexTC.most_common(80))
 
 dexGA = Counter(GA)
 print(dexGA.most_common(80))
+
+dex = Counter(tsong)
+print(dex.most_common(80))

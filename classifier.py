@@ -32,6 +32,7 @@ def seperate (raw:dict) :
     doc_train, doc_test, sect_train, sect_test, author_train, author_test = train_test_split(doc, sect, author, test_size=0.3, random_state=10023, shuffle=True)
 
 def makeVector (fang:str) :
+    global doc_train, doc_test
     if fang == 'TFIDF' :
         from sklearn.feature_extraction.text import TfidfVectorizer
         vectorizer = TfidfVectorizer(ngram_range=(1, 1)).fit(doc_train)
@@ -87,6 +88,7 @@ def classify (x_train, y_train, x_test, y_test, algorithm) :
         from sklearn import tree
         clf = tree.DecisionTreeClassifier().fit(x_train, y_train)
     classified = clf.predict(x_test)
+    print('訓練好了一個模型。')
     return classified
 
 def report (x_train, y_train, x_test, y_test, y_classified) :
@@ -94,3 +96,20 @@ def report (x_train, y_train, x_test, y_test, y_classified) :
     print(classification_report(y_test, clf.predict(x_test),digits=8))
     print(confusion_matrix(y_test, clf.predict(x_test)))
     print(roc_auc_score(y_test, clf.predict(x_test)))
+
+
+def main (ifStop:bool, repre:str, ifSift=False, algo) :
+    global doc_train, doc_test, sect_train, sect_test, author_train, author_test
+    if ifStop == True :
+        corpus = stop(corpus)
+    seperate(corpus)
+    doc_train, doc_test = makeVector (repre)
+    if ifSift != False :
+        doc_train, doc_test = sift (ifSift, doc_train, doc_test, sect_train)
+    print('完成降維')
+    sect_classified (doc_train, sect_train, doc_test, sect_test, algo)
+    report (doc_train, sect_train, doc_test, sect_test, sect_classified)
+    
+
+if __name__ == '__main__' :
+    main(False, 'TFIDF', 'mutual_info', 'bayes')
