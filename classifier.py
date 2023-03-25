@@ -1,5 +1,7 @@
 import json
 import numpy as np
+from sklearn.preprocessing import LabelEncoder
+le = LabelEncoder()
 
 
 
@@ -95,16 +97,16 @@ def classify (x_train, y_train, x_test, y_test, algorithm) :
     if algorithm == 'tree' :
         from sklearn import tree
         clf = tree.DecisionTreeClassifier().fit(x_train, y_train)
-    #classified = clf.predict(x_test)
+    classified = clf.predict(x_test)
     print('訓練好了一個模型。')
-    #return classified, clf
-    return clf
+    return classified, clf
+    #return clf
 
 def report (x_train, y_train, x_test, y_test, y_classified) :
     from sklearn.metrics import confusion_matrix, classification_report, roc_auc_score
     print(classification_report(y_test, clf.predict(x_test),digits=8))
     print(confusion_matrix(y_test, clf.predict(x_test)))
-    print(roc_auc_score(y_test, clf.predict(x_test)))
+    print(roc_auc_score(le.fit_transform(y_test), le.fit_transform(clf.predict(x_test))))
 
 
 def main (ifStop:bool, repre:str, ifSift=False, algo=None) :
@@ -117,20 +119,20 @@ def main (ifStop:bool, repre:str, ifSift=False, algo=None) :
     if ifSift != False :
         doc_train, doc_test = sift (ifSift, doc_train, doc_test, sect_train)
     print('完成降維')
-    #sect_classified = classify(doc_train, sect_train, doc_test, sect_test, algo)
-    
-    module = classify(doc_train, sect_train, doc_test, sect_test, algo)
+    sect_classified, module = classify(doc_train, sect_train, doc_test, sect_test, algo)
     import pickle
-    with open(str(ifStop)+'-'+repre+'-'+str(ifSift)+'-'+algo+'.pkl', 'wb') as f:
+    with open('module/'+str(ifStop)+'-'+repre+'-'+str(ifSift)+'-'+algo+'.pkl', 'wb') as f:
         pickle.dump(module, f)
-    
-    #report (doc_train, sect_train, doc_test, sect_test, sect_classified)
+    print('结果：')
+    print (str(ifStop)+'-'+repre+'-'+str(ifSift)+'-'+algo)
+    report (doc_train, sect_train, doc_test, sect_test, sect_classified)
+    print ('\n\n\n\n')
     
 
 if __name__ == '__main__' :
     a = (False, True)
     b = ('BAG', 'TFIDF')
-    c = ('mutual_info', 'variance', False)
+    c = ('mutual_info', 'variance')
     d = ('SVM', 'log', 'bayes', 'kNeighbour', 'tree', 'randomForest')
     for A in a :
         for B in b :
