@@ -1,0 +1,1051 @@
+完成降維
+訓練好了一個模型。
+结果：
+False-BAG-mutual_info-SVM
+
+              precision    recall  f1-score   support
+
+      gongan  0.79646018 0.86816720 0.83076923       311
+ torngcherng  0.84046693 0.75789474 0.79704797       285
+
+    accuracy                      0.81543624       596
+   macro avg  0.81846355 0.81303097 0.81390860       596
+weighted avg  0.81750367 0.81543624 0.81464413       596
+
+[[270  41]
+ [ 69 216]]
+0.8130309697072263
+
+
+
+
+
+完成降維
+訓練好了一個模型。
+结果：
+False-BAG-mutual_info-log
+
+              precision    recall  f1-score   support
+
+      gongan  0.80588235 0.88102894 0.84178187       311
+ torngcherng  0.85546875 0.76842105 0.80961183       285
+
+    accuracy                      0.82718121       596
+   macro avg  0.83067555 0.82472500 0.82569685       596
+weighted avg  0.82959397 0.82718121 0.82639855       596
+
+[[274  37]
+ [ 66 219]]
+0.8247249957691656
+
+
+
+
+
+完成降維
+訓練好了一個模型。
+结果：
+False-BAG-mutual_info-bayes
+
+              precision    recall  f1-score   support
+
+      gongan  0.94897959 0.59807074 0.73372781       311
+ torngcherng  0.68750000 0.96491228 0.80291971       285
+
+    accuracy                      0.77348993       596
+   macro avg  0.81823980 0.78149151 0.76832376       596
+weighted avg  0.82394321 0.77348993 0.76681454       596
+
+[[186 125]
+ [ 10 275]]
+0.7814915101257968
+
+
+
+
+
+完成降維
+訓練好了一個模型。
+结果：
+False-BAG-mutual_info-kNeighbour
+
+              precision    recall  f1-score   support
+
+      gongan  0.72651934 0.84565916 0.78157504       311
+ torngcherng  0.79487179 0.65263158 0.71676301       285
+
+    accuracy                      0.75335570       596
+   macro avg  0.76069557 0.74914537 0.74916902       596
+weighted avg  0.75920466 0.75335570 0.75058271       596
+
+[[263  48]
+ [ 99 186]]
+0.7491453714672534
+
+
+
+
+
+完成降維
+訓練好了一個模型。
+结果：
+False-BAG-mutual_info-tree
+
+              precision    recall  f1-score   support
+
+      gongan  0.77039275 0.81993569 0.79439252       311
+ torngcherng  0.78867925 0.73333333 0.76000000       285
+
+    accuracy                      0.77852349       596
+   macro avg  0.77953600 0.77663451 0.77719626       596
+weighted avg  0.77913713 0.77852349 0.77794643       596
+
+[[255  56]
+ [ 76 209]]
+0.7766345123258307
+
+
+
+
+
+完成降維
+訓練好了一個模型。
+结果：
+False-BAG-mutual_info-randomForest
+
+              precision    recall  f1-score   support
+
+      gongan  0.73958333 0.91318328 0.81726619       311
+ torngcherng  0.87264151 0.64912281 0.74446680       285
+
+    accuracy                      0.78691275       596
+   macro avg  0.80611242 0.78115304 0.78086649       596
+weighted avg  0.80321015 0.78691275 0.78245440       596
+
+[[284  27]
+ [100 185]]
+0.7811530433801546
+
+
+
+
+
+完成降維
+訓練好了一個模型。
+结果：
+False-BAG-variance-SVM
+
+              precision    recall  f1-score   support
+
+      gongan  0.91029900 0.88102894 0.89542484       311
+ torngcherng  0.87457627 0.90526316 0.88965517       285
+
+    accuracy                      0.89261745       596
+   macro avg  0.89243764 0.89314605 0.89254000       596
+weighted avg  0.89321682 0.89261745 0.89266585       596
+
+[[274  37]
+ [ 27 258]]
+0.8931460484007447
+
+
+
+
+
+完成降維
+訓練好了一個模型。
+结果：
+False-BAG-variance-log
+
+              precision    recall  f1-score   support
+
+      gongan  0.92405063 0.93890675 0.93141946       311
+ torngcherng  0.93214286 0.91578947 0.92389381       285
+
+    accuracy                      0.92785235       596
+   macro avg  0.92809675 0.92734811 0.92765663       596
+weighted avg  0.92792024 0.92785235 0.92782078       596
+
+[[292  19]
+ [ 24 261]]
+0.927348113047893
+
+
+
+
+
+完成降維
+訓練好了一個模型。
+结果：
+False-BAG-variance-bayes
+
+              precision    recall  f1-score   support
+
+      gongan  0.93630573 0.94533762 0.94080000       311
+ torngcherng  0.93971631 0.92982456 0.93474427       285
+
+    accuracy                      0.93791946       596
+   macro avg  0.93801102 0.93758109 0.93777213       596
+weighted avg  0.93793663 0.93791946 0.93790422       596
+
+[[294  17]
+ [ 20 265]]
+0.9375810909911435
+
+
+
+
+
+完成降維
+訓練好了一個模型。
+结果：
+False-BAG-variance-kNeighbour
+
+              precision    recall  f1-score   support
+
+      gongan  0.60227273 0.17041801 0.26566416       311
+ torngcherng  0.49212598 0.87719298 0.63051702       285
+
+    accuracy                      0.50838926       596
+   macro avg  0.54719936 0.52380549 0.44809059       596
+weighted avg  0.54960189 0.50838926 0.44013239       596
+
+[[ 53 258]
+ [ 35 250]]
+0.5238054944435042
+
+
+
+
+
+完成降維
+訓練好了一個模型。
+结果：
+False-BAG-variance-tree
+
+              precision    recall  f1-score   support
+
+      gongan  0.87443946 0.62700965 0.73033708       311
+ torngcherng  0.68900804 0.90175439 0.78115502       285
+
+    accuracy                      0.75838926       596
+   macro avg  0.78172375 0.76438202 0.75574605       596
+weighted avg  0.78576840 0.75838926 0.75463760       596
+
+[[195 116]
+ [ 28 257]]
+0.7643820161335815
+
+
+
+
+
+完成降維
+訓練好了一個模型。
+结果：
+False-BAG-variance-randomForest
+
+              precision    recall  f1-score   support
+
+      gongan  0.79378531 0.90353698 0.84511278       311
+ torngcherng  0.87603306 0.74385965 0.80455408       285
+
+    accuracy                      0.82718121       596
+   macro avg  0.83490918 0.82369831 0.82483343       596
+weighted avg  0.83311519 0.82718121 0.82571810       596
+
+[[281  30]
+ [ 73 212]]
+0.8236983133073842
+
+
+
+
+
+完成降維
+訓練好了一個模型。
+结果：
+False-TFIDF-mutual_info-SVM
+
+              precision    recall  f1-score   support
+
+      gongan  0.71531100 0.96141479 0.82030178       311
+ torngcherng  0.93258427 0.58245614 0.71706263       285
+
+    accuracy                      0.78020134       596
+   macro avg  0.82394764 0.77193547 0.76868221       596
+weighted avg  0.81920846 0.78020134 0.77093407       596
+
+[[299  12]
+ [119 166]]
+0.7719354656738309
+
+
+
+
+
+完成降維
+訓練好了一個模型。
+结果：
+False-TFIDF-mutual_info-log
+
+              precision    recall  f1-score   support
+
+      gongan  0.79718310 0.90996785 0.84984985       311
+ torngcherng  0.88381743 0.74736842 0.80988593       285
+
+    accuracy                      0.83221477       596
+   macro avg  0.84050026 0.82866813 0.82986789       596
+weighted avg  0.83861059 0.83221477 0.83073959       596
+
+[[283  28]
+ [ 72 213]]
+0.8286681333558978
+
+
+
+
+
+完成降維
+訓練好了一個模型。
+结果：
+False-TFIDF-mutual_info-bayes
+
+              precision    recall  f1-score   support
+
+      gongan  0.92964824 0.59485531 0.72549020       311
+ torngcherng  0.68261965 0.95087719 0.79472141       285
+
+    accuracy                      0.76510067       596
+   macro avg  0.80613394 0.77286625 0.76010580       596
+weighted avg  0.81152215 0.76510067 0.75859573       596
+
+[[185 126]
+ [ 14 271]]
+0.772866249224347
+
+
+
+
+
+完成降維
+訓練好了一個模型。
+结果：
+False-TFIDF-mutual_info-kNeighbour
+
+              precision    recall  f1-score   support
+
+      gongan  0.74931880 0.88424437 0.81120944       311
+ torngcherng  0.84279476 0.67719298 0.75097276       285
+
+    accuracy                      0.78523490       596
+   macro avg  0.79605678 0.78071868 0.78109110       596
+weighted avg  0.79401788 0.78523490 0.78240499       596
+
+[[275  36]
+ [ 92 193]]
+0.7807186777232471
+
+
+
+
+
+完成降維
+訓練好了一個模型。
+结果：
+False-TFIDF-mutual_info-tree
+
+              precision    recall  f1-score   support
+
+      gongan  0.77177177 0.82636656 0.79813665       311
+ torngcherng  0.79467681 0.73333333 0.76277372       285
+
+    accuracy                      0.78187919       596
+   macro avg  0.78322429 0.77984995 0.78045518       596
+weighted avg  0.78272468 0.78187919 0.78122652       596
+
+[[257  54]
+ [ 76 209]]
+0.7798499464094318
+
+
+
+
+
+完成降維
+訓練好了一個模型。
+结果：
+False-TFIDF-mutual_info-randomForest
+
+              precision    recall  f1-score   support
+
+      gongan  0.74083770 0.90996785 0.81673882       311
+ torngcherng  0.86915888 0.65263158 0.74549098       285
+
+    accuracy                      0.78691275       596
+   macro avg  0.80499829 0.78129971 0.78111490       596
+weighted avg  0.80219934 0.78691275 0.78266896       596
+
+[[283  28]
+ [ 99 186]]
+0.7812997123032662
+
+
+
+
+
+完成降維
+訓練好了一個模型。
+结果：
+False-TFIDF-variance-SVM
+
+              precision    recall  f1-score   support
+
+      gongan  0.88023952 0.94533762 0.91162791       311
+ torngcherng  0.93511450 0.85964912 0.89579525       285
+
+    accuracy                      0.90436242       596
+   macro avg  0.90767701 0.90249337 0.90371158       596
+weighted avg  0.90648007 0.90436242 0.90405692       596
+
+[[294  17]
+ [ 40 245]]
+0.9024933716928979
+
+
+
+
+
+完成降維
+訓練好了一個模型。
+结果：
+False-TFIDF-variance-log
+
+              precision    recall  f1-score   support
+
+      gongan  0.88650307 0.92926045 0.90737834       311
+ torngcherng  0.91851852 0.87017544 0.89369369       285
+
+    accuracy                      0.90100671       596
+   macro avg  0.90251079 0.89971794 0.90053601       596
+weighted avg  0.90181247 0.90100671 0.90083451       596
+
+[[289  22]
+ [ 37 248]]
+0.8997179443786315
+
+
+
+
+
+完成降維
+訓練好了一個模型。
+结果：
+False-TFIDF-variance-bayes
+
+              precision    recall  f1-score   support
+
+      gongan  0.92015209 0.77813505 0.84320557       311
+ torngcherng  0.79279279 0.92631579 0.85436893       285
+
+    accuracy                      0.84899329       596
+   macro avg  0.85647244 0.85222542 0.84878725       596
+weighted avg  0.85925041 0.84899329 0.84854376       596
+
+[[242  69]
+ [ 21 264]]
+0.8522254188525977
+
+
+
+
+
+完成降維
+訓練好了一個模型。
+结果：
+False-TFIDF-variance-kNeighbour
+
+              precision    recall  f1-score   support
+
+      gongan  0.55393053 0.97427653 0.70629371       311
+ torngcherng  0.83673469 0.14385965 0.24550898       285
+
+    accuracy                      0.57718121       596
+   macro avg  0.69533261 0.55906809 0.47590134       596
+weighted avg  0.68916406 0.57718121 0.48595202       596
+
+[[303   8]
+ [244  41]]
+0.5590680882269984
+
+
+
+
+
+完成降維
+訓練好了一個模型。
+结果：
+False-TFIDF-variance-tree
+
+              precision    recall  f1-score   support
+
+      gongan  0.84039088 0.82958199 0.83495146       311
+ torngcherng  0.81660900 0.82807018 0.82229965       285
+
+    accuracy                      0.82885906       596
+   macro avg  0.82849994 0.82882608 0.82862555       596
+weighted avg  0.82901867 0.82885906 0.82890152       596
+
+[[258  53]
+ [ 49 236]]
+0.8288260845038641
+
+
+
+
+
+完成降維
+訓練好了一個模型。
+结果：
+False-TFIDF-variance-randomForest
+
+              precision    recall  f1-score   support
+
+      gongan  0.78846154 0.92282958 0.85037037       311
+ torngcherng  0.89655172 0.72982456 0.80464217       285
+
+    accuracy                      0.83053691       596
+   macro avg  0.84250663 0.82632707 0.82750627       596
+weighted avg  0.84014896 0.83053691 0.82850370       596
+
+[[287  24]
+ [ 77 208]]
+0.826327071698539
+
+
+
+
+
+完成降維
+訓練好了一個模型。
+结果：
+True-BAG-mutual_info-SVM
+
+              precision    recall  f1-score   support
+
+      gongan  0.79646018 0.86816720 0.83076923       311
+ torngcherng  0.84046693 0.75789474 0.79704797       285
+
+    accuracy                      0.81543624       596
+   macro avg  0.81846355 0.81303097 0.81390860       596
+weighted avg  0.81750367 0.81543624 0.81464413       596
+
+[[270  41]
+ [ 69 216]]
+0.8130309697072263
+
+
+
+
+
+完成降維
+訓練好了一個模型。
+结果：
+True-BAG-mutual_info-log
+
+              precision    recall  f1-score   support
+
+      gongan  0.80588235 0.88102894 0.84178187       311
+ torngcherng  0.85546875 0.76842105 0.80961183       285
+
+    accuracy                      0.82718121       596
+   macro avg  0.83067555 0.82472500 0.82569685       596
+weighted avg  0.82959397 0.82718121 0.82639855       596
+
+[[274  37]
+ [ 66 219]]
+0.8247249957691656
+
+
+
+
+
+完成降維
+訓練好了一個模型。
+结果：
+True-BAG-mutual_info-bayes
+
+              precision    recall  f1-score   support
+
+      gongan  0.94897959 0.59807074 0.73372781       311
+ torngcherng  0.68750000 0.96491228 0.80291971       285
+
+    accuracy                      0.77348993       596
+   macro avg  0.81823980 0.78149151 0.76832376       596
+weighted avg  0.82394321 0.77348993 0.76681454       596
+
+[[186 125]
+ [ 10 275]]
+0.7814915101257968
+
+
+
+
+
+完成降維
+訓練好了一個模型。
+结果：
+True-BAG-mutual_info-kNeighbour
+
+              precision    recall  f1-score   support
+
+      gongan  0.72651934 0.84565916 0.78157504       311
+ torngcherng  0.79487179 0.65263158 0.71676301       285
+
+    accuracy                      0.75335570       596
+   macro avg  0.76069557 0.74914537 0.74916902       596
+weighted avg  0.75920466 0.75335570 0.75058271       596
+
+[[263  48]
+ [ 99 186]]
+0.7491453714672534
+
+
+
+
+
+完成降維
+訓練好了一個模型。
+结果：
+True-BAG-mutual_info-tree
+
+              precision    recall  f1-score   support
+
+      gongan  0.77607362 0.81350482 0.79434851       311
+ torngcherng  0.78518519 0.74385965 0.76396396       285
+
+    accuracy                      0.78020134       596
+   macro avg  0.78062940 0.77868224 0.77915624       596
+weighted avg  0.78043066 0.78020134 0.77981899       596
+
+[[253  58]
+ [ 73 212]]
+0.7786822361369662
+
+
+
+
+
+完成降維
+訓練好了一個模型。
+结果：
+True-BAG-mutual_info-randomForest
+
+              precision    recall  f1-score   support
+
+      gongan  0.73958333 0.91318328 0.81726619       311
+ torngcherng  0.87264151 0.64912281 0.74446680       285
+
+    accuracy                      0.78691275       596
+   macro avg  0.80611242 0.78115304 0.78086649       596
+weighted avg  0.80321015 0.78691275 0.78245440       596
+
+[[284  27]
+ [100 185]]
+0.7811530433801546
+
+
+
+
+
+完成降維
+訓練好了一個模型。
+结果：
+True-BAG-variance-SVM
+
+              precision    recall  f1-score   support
+
+      gongan  0.91029900 0.88102894 0.89542484       311
+ torngcherng  0.87457627 0.90526316 0.88965517       285
+
+    accuracy                      0.89261745       596
+   macro avg  0.89243764 0.89314605 0.89254000       596
+weighted avg  0.89321682 0.89261745 0.89266585       596
+
+[[274  37]
+ [ 27 258]]
+0.8931460484007447
+
+
+
+
+
+完成降維
+訓練好了一個模型。
+结果：
+True-BAG-variance-log
+
+              precision    recall  f1-score   support
+
+      gongan  0.92405063 0.93890675 0.93141946       311
+ torngcherng  0.93214286 0.91578947 0.92389381       285
+
+    accuracy                      0.92785235       596
+   macro avg  0.92809675 0.92734811 0.92765663       596
+weighted avg  0.92792024 0.92785235 0.92782078       596
+
+[[292  19]
+ [ 24 261]]
+0.927348113047893
+
+
+
+
+
+完成降維
+訓練好了一個模型。
+结果：
+True-BAG-variance-bayes
+
+              precision    recall  f1-score   support
+
+      gongan  0.93630573 0.94533762 0.94080000       311
+ torngcherng  0.93971631 0.92982456 0.93474427       285
+
+    accuracy                      0.93791946       596
+   macro avg  0.93801102 0.93758109 0.93777213       596
+weighted avg  0.93793663 0.93791946 0.93790422       596
+
+[[294  17]
+ [ 20 265]]
+0.9375810909911435
+
+
+
+
+
+完成降維
+訓練好了一個模型。
+结果：
+True-BAG-variance-kNeighbour
+
+              precision    recall  f1-score   support
+
+      gongan  0.60227273 0.17041801 0.26566416       311
+ torngcherng  0.49212598 0.87719298 0.63051702       285
+
+    accuracy                      0.50838926       596
+   macro avg  0.54719936 0.52380549 0.44809059       596
+weighted avg  0.54960189 0.50838926 0.44013239       596
+
+[[ 53 258]
+ [ 35 250]]
+0.5238054944435042
+
+
+
+
+
+完成降維
+訓練好了一個模型。
+结果：
+True-BAG-variance-tree
+
+              precision    recall  f1-score   support
+
+      gongan  0.84615385 0.63665595 0.72660550       311
+ torngcherng  0.68784530 0.87368421 0.76970634       285
+
+    accuracy                      0.75000000       596
+   macro avg  0.76699958 0.75517008 0.74815592       596
+weighted avg  0.77045261 0.75000000 0.74721580       596
+
+[[198 113]
+ [ 36 249]]
+0.7551700795396853
+
+
+
+
+
+完成降維
+訓練好了一個模型。
+结果：
+True-BAG-variance-randomForest
+
+              precision    recall  f1-score   support
+
+      gongan  0.79378531 0.90353698 0.84511278       311
+ torngcherng  0.87603306 0.74385965 0.80455408       285
+
+    accuracy                      0.82718121       596
+   macro avg  0.83490918 0.82369831 0.82483343       596
+weighted avg  0.83311519 0.82718121 0.82571810       596
+
+[[281  30]
+ [ 73 212]]
+0.8236983133073842
+
+
+
+
+
+完成降維
+訓練好了一個模型。
+结果：
+True-TFIDF-mutual_info-SVM
+
+              precision    recall  f1-score   support
+
+      gongan  0.71531100 0.96141479 0.82030178       311
+ torngcherng  0.93258427 0.58245614 0.71706263       285
+
+    accuracy                      0.78020134       596
+   macro avg  0.82394764 0.77193547 0.76868221       596
+weighted avg  0.81920846 0.78020134 0.77093407       596
+
+[[299  12]
+ [119 166]]
+0.7719354656738309
+
+
+
+
+
+完成降維
+訓練好了一個模型。
+结果：
+True-TFIDF-mutual_info-log
+
+              precision    recall  f1-score   support
+
+      gongan  0.79718310 0.90996785 0.84984985       311
+ torngcherng  0.88381743 0.74736842 0.80988593       285
+
+    accuracy                      0.83221477       596
+   macro avg  0.84050026 0.82866813 0.82986789       596
+weighted avg  0.83861059 0.83221477 0.83073959       596
+
+[[283  28]
+ [ 72 213]]
+0.8286681333558978
+
+
+
+
+
+完成降維
+訓練好了一個模型。
+结果：
+True-TFIDF-mutual_info-bayes
+
+              precision    recall  f1-score   support
+
+      gongan  0.92964824 0.59485531 0.72549020       311
+ torngcherng  0.68261965 0.95087719 0.79472141       285
+
+    accuracy                      0.76510067       596
+   macro avg  0.80613394 0.77286625 0.76010580       596
+weighted avg  0.81152215 0.76510067 0.75859573       596
+
+[[185 126]
+ [ 14 271]]
+0.772866249224347
+
+
+
+
+
+完成降維
+訓練好了一個模型。
+结果：
+True-TFIDF-mutual_info-kNeighbour
+
+              precision    recall  f1-score   support
+
+      gongan  0.74931880 0.88424437 0.81120944       311
+ torngcherng  0.84279476 0.67719298 0.75097276       285
+
+    accuracy                      0.78523490       596
+   macro avg  0.79605678 0.78071868 0.78109110       596
+weighted avg  0.79401788 0.78523490 0.78240499       596
+
+[[275  36]
+ [ 92 193]]
+0.7807186777232471
+
+
+
+
+
+完成降維
+訓練好了一個模型。
+结果：
+True-TFIDF-mutual_info-tree
+
+              precision    recall  f1-score   support
+
+      gongan  0.77675841 0.81672026 0.79623824       311
+ torngcherng  0.78810409 0.74385965 0.76534296       285
+
+    accuracy                      0.78187919       596
+   macro avg  0.78243125 0.78028995 0.78079060       596
+weighted avg  0.78218378 0.78187919 0.78146449       596
+
+[[254  57]
+ [ 73 212]]
+0.780289953178767
+
+
+
+
+
+完成降維
+訓練好了一個模型。
+结果：
+True-TFIDF-mutual_info-randomForest
+
+              precision    recall  f1-score   support
+
+      gongan  0.74083770 0.90996785 0.81673882       311
+ torngcherng  0.86915888 0.65263158 0.74549098       285
+
+    accuracy                      0.78691275       596
+   macro avg  0.80499829 0.78129971 0.78111490       596
+weighted avg  0.80219934 0.78691275 0.78266896       596
+
+[[283  28]
+ [ 99 186]]
+0.7812997123032662
+
+
+
+
+
+完成降維
+訓練好了一個模型。
+结果：
+True-TFIDF-variance-SVM
+
+              precision    recall  f1-score   support
+
+      gongan  0.88023952 0.94533762 0.91162791       311
+ torngcherng  0.93511450 0.85964912 0.89579525       285
+
+    accuracy                      0.90436242       596
+   macro avg  0.90767701 0.90249337 0.90371158       596
+weighted avg  0.90648007 0.90436242 0.90405692       596
+
+[[294  17]
+ [ 40 245]]
+0.9024933716928979
+
+
+
+
+
+完成降維
+訓練好了一個模型。
+结果：
+True-TFIDF-variance-log
+
+              precision    recall  f1-score   support
+
+      gongan  0.88650307 0.92926045 0.90737834       311
+ torngcherng  0.91851852 0.87017544 0.89369369       285
+
+    accuracy                      0.90100671       596
+   macro avg  0.90251079 0.89971794 0.90053601       596
+weighted avg  0.90181247 0.90100671 0.90083451       596
+
+[[289  22]
+ [ 37 248]]
+0.8997179443786315
+
+
+
+
+
+完成降維
+訓練好了一個模型。
+结果：
+True-TFIDF-variance-bayes
+
+              precision    recall  f1-score   support
+
+      gongan  0.92015209 0.77813505 0.84320557       311
+ torngcherng  0.79279279 0.92631579 0.85436893       285
+
+    accuracy                      0.84899329       596
+   macro avg  0.85647244 0.85222542 0.84878725       596
+weighted avg  0.85925041 0.84899329 0.84854376       596
+
+[[242  69]
+ [ 21 264]]
+0.8522254188525977
+
+
+
+
+
+完成降維
+訓練好了一個模型。
+结果：
+True-TFIDF-variance-kNeighbour
+
+              precision    recall  f1-score   support
+
+      gongan  0.55393053 0.97427653 0.70629371       311
+ torngcherng  0.83673469 0.14385965 0.24550898       285
+
+    accuracy                      0.57718121       596
+   macro avg  0.69533261 0.55906809 0.47590134       596
+weighted avg  0.68916406 0.57718121 0.48595202       596
+
+[[303   8]
+ [244  41]]
+0.5590680882269984
+
+
+
+
+
+完成降維
+訓練好了一個模型。
+结果：
+True-TFIDF-variance-tree
+
+              precision    recall  f1-score   support
+
+      gongan  0.83279743 0.83279743 0.83279743       311
+ torngcherng  0.81754386 0.81754386 0.81754386       285
+
+    accuracy                      0.82550336       596
+   macro avg  0.82517064 0.82517064 0.82517064       596
+weighted avg  0.82550336 0.82550336 0.82550336       596
+
+[[259  52]
+ [ 52 233]]
+0.825170643650928
+
+
+
+
+
+完成降維
+訓練好了一個模型。
+结果：
+True-TFIDF-variance-randomForest
+
+              precision    recall  f1-score   support
+
+      gongan  0.78846154 0.92282958 0.85037037       311
+ torngcherng  0.89655172 0.72982456 0.80464217       285
+
+    accuracy                      0.83053691       596
+   macro avg  0.84250663 0.82632707 0.82750627       596
+weighted avg  0.84014896 0.83053691 0.82850370       596
+
+[[287  24]
+ [ 77 208]]
+0.826327071698539

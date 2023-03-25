@@ -3,3 +3,8 @@ preprocess/jiayan.klm
 preprocess/pos_model
 preprocess/punc_model
 *.pkl
+
+doc/*.aux
+doc/*.log
+doc/*.gz
+*.pdf
