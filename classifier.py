@@ -1,8 +1,7 @@
 import json
 import numpy as np
 
-with open ('corpus/segmented.json', 'r', encoding='utf-8') as f :
-    corpus = json.load(f)
+
 
 with open ('stopWords.json', 'r', encoding='utf-8') as f :
     stopWords:list[str] = json.load(f)
@@ -137,5 +136,7 @@ if __name__ == '__main__' :
         for B in b :
             for C in c :
                 for D in d :
+                    with open ('corpus/segmented.json', 'r', encoding='utf-8') as f :
+                        corpus = json.load(f)
                     main(A, B, C, D)
 
