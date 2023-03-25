@@ -130,7 +130,7 @@ def main (ifStop:bool, repre:str, ifSift=False, algo=None) :
 if __name__ == '__main__' :
     a = (False, True)
     b = ('BAG', 'TFIDF')
-    c = ('mutual_info', 'variance')
+    c = ('mutual_info', 'variance', False)
     d = ('SVM', 'log', 'bayes', 'kNeighbour', 'tree', 'randomForest')
     for A in a :
         for B in b :
