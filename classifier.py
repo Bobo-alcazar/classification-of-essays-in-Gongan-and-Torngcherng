@@ -96,9 +96,10 @@ def classify (x_train, y_train, x_test, y_test, algorithm) :
     if algorithm == 'tree' :
         from sklearn import tree
         clf = tree.DecisionTreeClassifier().fit(x_train, y_train)
-    classified = clf.predict(x_test)
+    #classified = clf.predict(x_test)
     print('訓練好了一個模型。')
-    return classified
+    #return classified, clf
+    return clf
 
 def report (x_train, y_train, x_test, y_test, y_classified) :
     from sklearn.metrics import confusion_matrix, classification_report, roc_auc_score
@@ -117,9 +118,24 @@ def main (ifStop:bool, repre:str, ifSift=False, algo=None) :
     if ifSift != False :
         doc_train, doc_test = sift (ifSift, doc_train, doc_test, sect_train)
     print('完成降維')
-    sect_classified = classify(doc_train, sect_train, doc_test, sect_test, algo)
-    report (doc_train, sect_train, doc_test, sect_test, sect_classified)
+    #sect_classified = classify(doc_train, sect_train, doc_test, sect_test, algo)
+    
+    module = classify(doc_train, sect_train, doc_test, sect_test, algo)
+    import pickle
+    with open(str(ifStop)+'-'+repre+'-'+str(ifSift)+'-'+algo+'.pkl', 'wb') as f:
+        pickle.dump(module, f)
+    
+    #report (doc_train, sect_train, doc_test, sect_test, sect_classified)
     
 
 if __name__ == '__main__' :
-    main(False, 'TFIDF', 'mutual_info', 'bayes')
+    a = (False, True)
+    b = ('BAG', 'TFIDF')
+    c = ('mutual_info', 'variance')
+    d = ('SVM', 'log', 'bayes', 'kNeighbour', 'tree', 'randomForest')
+    for A in a :
+        for B in b :
+            for C in c :
+                for D in d :
+                    main(A, B, C, D)
+
