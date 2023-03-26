@@ -7,4 +7,5 @@ preprocess/punc_model
 doc/*.aux
 doc/*.log
 doc/*.gz
+doc/*.out
 *.pdf

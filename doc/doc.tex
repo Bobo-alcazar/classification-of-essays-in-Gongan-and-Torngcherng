@@ -1,5 +1,5 @@
 \documentclass[12pt, a4paper, oneside]{ctexart}
-\usepackage{amsmath, graphicx, geometry, hyperref}
+\usepackage{amsmath, graphicx, geometry, hyperref, listings}
 
 
 % 导言区
@@ -8,15 +8,17 @@
 \author{叶蓁 211506011}
 \date{}
 
-\setCJKmainfont{I.Ming-8.00.ttf}
-\setCJKsansfont{LXGWClearGothic-Regular.ttf}
-\setCJKmonofont{SourceHanMono.ttc}
+\setCJKVmainfont{I.Ming-8.00.ttf}
+\setCJKVsansfont{LXGWClearGothic-Regular.ttf}
+\setCJKVmonofont{SourceHanMono.ttc}
 
 %\geometry{left=1.5cm, right=1.5cm, top=3cm, bottom=3cm}
 
 \begin{document}
 
 \maketitle
+
+本任务代码已全部上传至\href{https://github.com/Bobo-alcazar/classification-of-essays-in-Gongan-and-Torngcherng}{GitHub}，部分文件由于体积过大未上传，这包含jiayan库的支持模型、LTP库的支持模型，及本任务所训练的文本分类模型。前两者可根据其文档指示下载到，执行根目录下\verb!classifier.py!即会在\verb!./module!目录下生成模型。
 
 \section{任务简介}
 
@@ -34,9 +36,30 @@
 
 \section{语料库制作}
 
-任务的第一步是爬取网络资源制作语料库。对于公安派和桐城派，我们分别选取其最具代表性的公安三袁的作品集，袁宏道\href{《袁中郎全集》}{https://ctext.org/wiki.pl?if=gb&res=142162&remap=gb}、袁中道\href{《珂雪斋集》}{https://zh.wikisource.org/wiki/%E7%8F%82%E9%9B%AA%E9%BD%8B%E9%9B%86}、袁宗道\href{《白苏斋类集》}{https://zh.wikisource.org/zh-hant/%E7%99%BD%E8%98%87%E9%BD%8B%E9%A1%9E%E9%9B%86}和桐城三祖的作品集方苞\href{《方望溪先生全集》}{https://zh.wikisource.org/wiki/%E6%96%B9%E6%9C%9B%E6%BA%AA%E5%85%88%E7%94%9F%E5%85%A8%E9%9B%86_(%E5%9B%9B%E9%83%A8%E5%8F%A2%E5%88%8A%E6%9C%AC)}、刘大櫆\href{《海峰文集》}{https://ctext.org/wiki.pl?if=gb&res=110875}、姚鼐\href{《惜抱轩文集》}{https://zh.wikisource.org/wiki/%E6%83%9C%E6%8A%B1%E8%BB%92%E6%96%87%E9%9B%86}，它们分别可以在维基文库和中国哲学书电子化计划两网站上看到，且每部集子都配有带链接的目录页，便于爬取。维基媒体的所有网站都是不设反爬措施的（实际上维基媒体鼓励合规的自由利用网站数据），中国哲学书电子化计划网站设有反扒措施，但并不严密，且主要是针对爬取网站公开书影的，对文本信息页面爬取管得不严，综上，我们不专门设计避免反扒措施的流程，不过伪装浏览器的请求头还是必要的。
+任务的第一步是爬取网络资源制作语料库。对于公安派和桐城派，我们分别选取其最具代表性的公安三袁的作品集，袁宏道\href{https://ctext.org/wiki.pl?if=gb&res=142162&remap=gb}{《袁中郎全集》}、袁中道\href{https://zh.wikisource.org/wiki/珂雪齋集}{《珂雪斋集》}、袁宗道\href{https://zh.wikisource.org/zh-hant/白蘇齋類集}{《白苏斋类集》}和桐城三祖的作品集方苞\href{https://zh.wikisource.org/wiki/方望溪先生全集_(四部叢刊本)}{《方望溪先生全集》}、刘大櫆\href{https://ctext.org/wiki.pl?if=gb&res=110875}{《海峰文集》}、姚鼐\href{https://zh.wikisource.org/wiki/惜抱軒文集}{《惜抱轩文集》}，它们分别可以在维基文库和中国哲学书电子化计划两网站上看到，且每部集子都配有带链接的目录页，便于爬取。维基媒体的所有网站都是不设反爬措施的（实际上维基媒体鼓励合规的自由利用网站数据），中国哲学书电子化计划网站设有反扒措施，但并不严密，且主要是针对爬取网站公开书影的，对文本信息页面爬取管得不严，综上，我们不专门设计避免反扒措施的流程，不过伪装浏览器的请求头还是必要的。
 
-此外，本任务仅是对散文流派的文本分类，其他文体不仅在用词上与散文有较大差异，在文学上也不被纳入桐城派、公安派的分类之中。以上作品集有的并非是散文类集性质，其中包含的其他文体因而是需要排除的。还有一些目录、序一类章节，也是需要排出的。这需要排除的内容被手动写进了代码。
+此外，本任务仅是对散文流派的文本分类，其他文体不仅在用词上与散文有较大差异，在文学上也不被纳入桐城派、公安派的分类之中。以上作品集有的并非是散文类集性质，其中包含的其他文体因而是需要排除的，如《袁中郎全集》卷一至卷九、《珂雪斋集》卷一至卷八、《白苏斋类集》卷一至卷六。还有一些目录、书序一类章节，其中不包含我们所需语料，也是需要排除的。这些要排除的内容被硬编码进了脚本。
+
+《珂雪斋集》、《白苏斋类集》和《惜抱轩文集》的结构化程度都比较高，篇目标题皆在\lstinline[language=html]!<h2>!或\lstinline[language=html]!<h3>!标签中，而文章内容则皆在标题后的\lstinline[language=html]!<p>!标签中，直接顺次读取即可。《海峰文集》基本上也符合这样的格式，只文章被放在了\lstinline[language=html]!<table>!中，不过不是什么大问题。比较麻烦的是《方望溪先生全集》和《袁中郎全集》，前者是对古籍扫描后得到的文本，没有经过任何其他整理，格式也较乱；后者是照古籍录入的，经过了一定校勘，格式上与古籍保持完全一致，未经结构化。观察可知，后者凡标题行皆空两个全角空格，可据此判断标题；前者则无此特点，我们只能根据一行的长度，断定较短的是标题，较长的是内容，经检验，这种办法基本能正确地把每篇文章区分开。这也就足够了，毕竟本任务计划使用的是词袋法，对于篇章分割的鲁棒性较高，可以容许少量错误划分而不影响结果。
+
+爬取后，每个文档被存储为一个三元列表，分别存放派别、作者和文档文本信息，以JSON格式存储在\verb!./corpus/raw!下。本部分的代码见于根目录下的\verb!crawler.py!文件。
+
+\section{文本预处理}
+
+这里的文本预处理任务，主要包括断句和分词两项。
+
+《方望溪先生全集》、《海峰文集》、《袁中郎全集》无句读，因此需要先进行断句任务；另三者已有标点，需在分词后去除其中标点。实际上，桐城派非常重视“文气”概念，这很大程度即由句子节奏决定，因而逗号和句号所反映的句子长度和小句长度是重要的文本特征。但由于我们的语料并非都有句读，而目前又无公开的区分句号与逗号的断句工具，因而我们统一不考虑这方面信息，仅使用单纯的词袋模型。（我怀疑加入句法结构信息作为特征亦能大幅度提高分类效果，不过本任务暂不考虑）
+
+大部分NLP工具包仅能接受单个句子执行分词任务，仅有stanza、LTP、HanLP、jiayan几个工具包可进行分句任务。HanLP和jiayan对文言的处理能力很强，是经过验证的。但HanLP的分句系连接服务器调用API完成，而我们需要处理的文本量极大，HanLP又对限定时间内API调用次数有限制，我们首先不考虑使用。stanza的中文（mandarin）模型即使对现代汉语的处理能力都较差，更不谈对文言的处理能力。不过，stanza专门针对文言训练了模型，不过模型体积大、速度慢，效果还未见得有明显优势。LTP的分句完全是基于标点符号的，无法承担句读任务。最终我们决定由jiayan来完成此任务。对于分词任务，亦决定由jiayan来完成。jiayan的算法虽然无stanza强大，但所使用的语料库远大于stanza的文言模型训练数据集。
+
+我们手动存储了常用标点符号列表，在分词后去除。一种保险的办法是根据Unicode字符编码的汉字区（即CJKV Unified Ideographs、CJKV Extension A、CJKV Extension B、
+CJKV Extension C、CJKV Extension D、CJKV Extension E、CJKV Extension F、CJKV Extension G、CJKV Extension H、CJKV Compatibility Ideographs、CJKV Compatibility Ideographs Supplement、U+3007）范围进行筛选，即去除汉字区以外的所有字符，不过那样会比较麻烦。考虑到有极少量标点未去除并不明显结果，我们未采用这种办法。严格来说，为了防止不同数位化习惯造成的问题，遇到CJKV Compatibility Ideographs（U+F900–U+FAFF）与CJKV Compatibility Ideographs Supplement（U+2F800–U+2FA1）中字符还应根据相关文件统合进其他九个区域中，此外，CJKV Unified Ideographs、CJKV Extension A、CJKV Extension B中的重出字也应统合（\href{https://glyphwiki.org/wiki/Group:原規格分離}{glyph wiki}有作不完整的整理工作，但目前似乎并无公开完整数据，这个工作实际上无法轻易地完成）。实际上，如果不同网站普遍采取不同习惯录入，是确实会严重干扰文本处理的，但基于㈠目前无完整公开数据，较难完成该任务；㈡语料规范性本来就差，不差这一项，而词袋模型鲁棒性较强；㈢我们假设用字习惯和语料来源网站没有强相关性；㈣即使有强相关性，也主要干扰的是文本聚类，对文本分类的干扰较小，以上四个理由，而不作这方面工作。
+
+经过以上处理后，将每个文档表示为一个字符串序列，每个元素为一个词，并将作者、流派及文档表示存储起来，每个作者的文章存为一个JSON文件，保存在\verb!./corpus!目录下。
+
+本部分代码见于\verb!./preprocess/segmentation.py!文件。
+
+\section{文本分类模型训练}
 
 
 
