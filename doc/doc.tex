@@ -1,5 +1,5 @@
 \documentclass[12pt, a4paper, oneside]{ctexart}
-\usepackage{amsmath, graphicx, geometry, hyperref, listings}
+\usepackage{amsmath, graphicx, geometry, hyperref, listings, multirow}
 
 
 % 导言区
@@ -8,9 +8,9 @@
 \author{叶蓁 211506011}
 \date{}
 
-\setCJKVmainfont{I.Ming-8.00.ttf}
-\setCJKVsansfont{LXGWClearGothic-Regular.ttf}
-\setCJKVmonofont{SourceHanMono.ttc}
+\setCJKmainfont{I.Ming-8.00.ttf}
+\setCJKsansfont{LXGWClearGothic-Regular.ttf}
+\setCJKmonofont{SourceHanMono.ttc}
 
 %\geometry{left=1.5cm, right=1.5cm, top=3cm, bottom=3cm}
 
@@ -18,7 +18,7 @@
 
 \maketitle
 
-本任务代码已全部上传至\href{https://github.com/Bobo-alcazar/classification-of-essays-in-Gongan-and-Torngcherng}{GitHub}，部分文件由于体积过大未上传，这包含jiayan库的支持模型、LTP库的支持模型，及本任务所训练的文本分类模型。前两者可根据其文档指示下载到，执行根目录下\verb!classifier.py!即会在\verb!./module!目录下生成模型。
+本任务代码已全部上传至\href{https://github.com/Bobo-alcazar/classification-of-essays-in-Gongan-and-Torngcherng}{GitHub}，故而不再单独展示代码。部分文件由于体积过大未上传，这包含jiayan库的支持模型、LTP库的支持模型，及本任务所训练的文本分类模型。前两者可根据其文档指示下载到，执行根目录下\href{https://github.com/Bobo-alcazar/classification-of-essays-in-Gongan-and-Torngcherng/blob/main/classifier.py}{\verb|classifier.py}即会在\href{https://github.com/Bobo-alcazar/classification-of-essays-in-Gongan-and-Torngcherng/tree/main/module}{\verb|./module}目录下生成模型。
 
 \section{任务简介}
 
@@ -42,7 +42,7 @@
 
 《珂雪斋集》、《白苏斋类集》和《惜抱轩文集》的结构化程度都比较高，篇目标题皆在\lstinline[language=html]!<h2>!或\lstinline[language=html]!<h3>!标签中，而文章内容则皆在标题后的\lstinline[language=html]!<p>!标签中，直接顺次读取即可。《海峰文集》基本上也符合这样的格式，只文章被放在了\lstinline[language=html]!<table>!中，不过不是什么大问题。比较麻烦的是《方望溪先生全集》和《袁中郎全集》，前者是对古籍扫描后得到的文本，没有经过任何其他整理，格式也较乱；后者是照古籍录入的，经过了一定校勘，格式上与古籍保持完全一致，未经结构化。观察可知，后者凡标题行皆空两个全角空格，可据此判断标题；前者则无此特点，我们只能根据一行的长度，断定较短的是标题，较长的是内容，经检验，这种办法基本能正确地把每篇文章区分开。这也就足够了，毕竟本任务计划使用的是词袋法，对于篇章分割的鲁棒性较高，可以容许少量错误划分而不影响结果。
 
-爬取后，每个文档被存储为一个三元列表，分别存放派别、作者和文档文本信息，以JSON格式存储在\verb!./corpus/raw!下。本部分的代码见于根目录下的\verb!crawler.py!文件。
+爬取后，每个文档被存储为一个三元列表，分别存放派别、作者和文档文本信息，以JSON格式存储在\href{https://github.com/Bobo-alcazar/classification-of-essays-in-Gongan-and-Torngcherng/tree/main/corpus/raw}{\verb!./corpus/raw}下。本部分的代码见于根目录下的\href{https://github.com/Bobo-alcazar/classification-of-essays-in-Gongan-and-Torngcherng/blob/main/crawler.py}{\verb!crawler.py}文件。
 
 \section{文本预处理}
 
@@ -55,20 +55,56 @@
 我们手动存储了常用标点符号列表，在分词后去除。一种保险的办法是根据Unicode字符编码的汉字区（即CJKV Unified Ideographs、CJKV Extension A、CJKV Extension B、
 CJKV Extension C、CJKV Extension D、CJKV Extension E、CJKV Extension F、CJKV Extension G、CJKV Extension H、CJKV Compatibility Ideographs、CJKV Compatibility Ideographs Supplement、U+3007）范围进行筛选，即去除汉字区以外的所有字符，不过那样会比较麻烦。考虑到有极少量标点未去除并不明显结果，我们未采用这种办法。严格来说，为了防止不同数位化习惯造成的问题，遇到CJKV Compatibility Ideographs（U+F900–U+FAFF）与CJKV Compatibility Ideographs Supplement（U+2F800–U+2FA1）中字符还应根据相关文件统合进其他九个区域中，此外，CJKV Unified Ideographs、CJKV Extension A、CJKV Extension B中的重出字也应统合（\href{https://glyphwiki.org/wiki/Group:原規格分離}{glyph wiki}有作不完整的整理工作，但目前似乎并无公开完整数据，这个工作实际上无法轻易地完成）。实际上，如果不同网站普遍采取不同习惯录入，是确实会严重干扰文本处理的，但基于㈠目前无完整公开数据，较难完成该任务；㈡语料规范性本来就差，不差这一项，而词袋模型鲁棒性较强；㈢我们假设用字习惯和语料来源网站没有强相关性；㈣即使有强相关性，也主要干扰的是文本聚类，对文本分类的干扰较小，以上四个理由，而不作这方面工作。
 
-经过以上处理后，将每个文档表示为一个字符串序列，每个元素为一个词，并将作者、流派及文档表示存储起来，每个作者的文章存为一个JSON文件，保存在\verb!./corpus!目录下。
+经过以上处理后，将每个文档表示为一个字符串序列，每个元素为一个词，并将作者、流派及文档表示存储起来，每个作者的文章存为一个JSON文件，保存在\href{https://github.com/Bobo-alcazar/classification-of-essays-in-Gongan-and-Torngcherng/tree/main/corpus}{\verb!./corpus}目录下。
 
-本部分代码见于\verb!./preprocess/segmentation.py!文件。
+本部分代码见于\href{https://github.com/Bobo-alcazar/classification-of-essays-in-Gongan-and-Torngcherng/blob/main/preprocess/segmentation.py}{\verb!./preprocess/segmentation.py}文件。
 
 \section{文本分类模型训练}
 
+上一步骤经过预处理，已经得到了结构化的文本数据。完整地来说，本步骤包含六个部分，分别是㈠去停用词；㈡分离训练集与测试集；㈢制作文档向量表示；㈣特征筛选；㈤模型训练；㈥模型测试。对于停用词，我们统计了文档中出现频率最高的数十个词汇，去除了其中的实词，制作成停用词表。（高频词统计见\href{https://github.com/Bobo-alcazar/classification-of-essays-in-Gongan-and-Torngcherng/blob/main/frequency.py}{\verb!frequency.py}，停用词表见\href{https://github.com/Bobo-alcazar/classification-of-essays-in-Gongan-and-Torngcherng/blob/main/stopWords.json}{\verb!stopWords.json}）。我们选取的停用词不多，这是考虑到，桐城派与公安派散文的用词风格差异很大程度是依赖于高频词差异的，而低频词反而和具体主题有关，而与风格关系不大。因此我们需更加谨慎地筛选停用词。训练集与测试集按三七开划分。文档向量表示有独热表示的词袋模型和TFIDF表示的加权词袋模型。特征筛选我们采取互信息筛选和方差筛选两种方式。之所以不考虑不加筛选的训练，是由于原文本向量维数过多，不加筛选的训练耗时极长，无法承担。模型训练分别采取支持向量机（SVM）、对数几率回归（logistic regression）、朴素贝叶斯（naive Bayes）、K近邻（K-nearest neighbors）、决策树（decision tree）、随机森林（random forest）六种算法。在根据训练数据集训练好模型后，即将分类模型应用于测试数据集，并计算F值及AUC值。
+
+以上代码见于\href{https://github.com/Bobo-alcazar/classification-of-essays-in-Gongan-and-Torngcherng/blob/main/classifier.py}{\verb!classifier.py}。
+
+\section{文本分类效果分析}
+
+采取各种不同算法分类所测得的F值及AUC值原始输出见于\href{https://github.com/Bobo-alcazar/classification-of-essays-in-Gongan-and-Torngcherng/blob/main/Logout.txt}{\verb!Logout.txt}，其中包含查准率、查全率及其宏平均值、加权平均值，以及AUC值。我们主要采取AUC值评估模型分类效果，下表是各算法中的AUC值。
+
+\begin{table}[!htb]
+    \centering
+    \resizebox{\linewidth}{!}{
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+        \hline
+        ~ & ~ & \multicolumn{2}{c|}{词袋} & \multicolumn{2}{c|}{TFIDF} \\ \hline
+        ~ & ~ & 不去停用词 & 去停用词 & 不去停用词 & 去停用词 \\ \hline
+        \multirow{6}*{互信息筛选} & 支持向量机 & 0.81303097 & 0.81303097 & 0.771935466 & 0.771935466 \\ \cline{2-6}
+        ~ & 对数几率回归 & 0.824724996 & 0.824724996 & 0.828668133 & 0.828668133 \\ \cline{2-6}
+        ~ & 朴素贝叶斯 & 0.78149151 & 0.78149151 & 0.772866249 & 0.772866249 \\ \cline{2-6}
+        ~ & K近邻 & 0.749145371 & 0.749145371 & 0.780718678 & 0.780718678 \\ \cline{2-6}
+        ~ & 决策树 & 0.776634512 & 0.778682236 & 0.779849946 & 0.780289953 \\ \cline{2-6}
+        ~ & 随机森林 & 0.781153043 & 0.781153043 & 0.781299712 & 0.781299712 \\ \cline{2-6}
+        \multirow{6}*{方差筛选} & 支持向量机 & 0.893146048 & 0.893146048 & 0.902493372 & 0.902493372 \\ \hline
+        ~ & 对数几率回归 & 0.927348113 & 0.927348113 & 0.899717944 & 0.902493372 \\ \cline{2-6}
+        ~ & 朴素贝叶斯 & 0.937581091 & 0.937581091 & 0.852225419 & 0.852225419 \\ \cline{2-6}
+        ~ & K近邻 & 0.523805494 & 0.523805494 & 0.559068088 & 0.559068088 \\ \cline{2-6}
+        ~ & 决策树 & 0.764382016 & 0.75517008 & 0.828826085 & 0.825170644 \\ \cline{2-6}
+        ~ & 随机森林 & 0.823698313 & 0.823698313 & 0.826327072 & 0.826327072 \\ \hline
+    \end{tabular}
+    }
+\end{table}
+
+从表中可以看出，才用方差筛选的方法表示的文档向量所训练的分类模型，效果普遍要远好于互信息筛选的效果，无论是单个比较还是整体来看都是如此。唯一的例外是，方差筛选后采用K近邻算法训练模型，效果尤其差，接近随机，完全不能使用。此外，才用朴素词袋法表示并加以方差筛选，以决策树算法训练的模型效果也较差，不如互信息筛选的效果好。
+
+总体来看，同等条件下，不加权的词袋法表示与加权的TFIDF表示效果差异不相上下，差别并不明显。由于我们去除的停用词非常少，大部分数据中，是否去停用词得到的AUC值都是差不多的，但不去停用词效果要略好于去停用词的情况，这是符合预期的。
+
+在控制文档表示和特征筛选条件的情况下，K近邻算法效果最差，对此任务不应使用；决策树算法分类效果也较差，但其在才用TFIDF表示和方差筛选时效果较好。随机森林算法的表现较平庸。对数几率回归算法和支持向量机算法整体表现最好，且尤其是在采取方差筛选特征的情况下。整体表现效果较好的，其次是朴素贝叶斯算法。此外，朴素贝叶斯算法在搭配不加权的词袋法表示且才用方差筛选特征时效果是所有组合中最好的，AUC值高于0.93。
+
+\section{总结}
+
+对于文言散文文体风格的分类，不去停用词效果可能好于去停用词的。TFIDF表示虽然携带了比词袋表示更多的信息，但分类效果未见得比词袋法好。方差筛选思路较为直观，但效果可能也很好。
+
+总之，对于文本分类任务，应尽量尝试更多的表示和算法组合，找到最优的方法。
 
 
-
-%\begin{figure}[htbp]
-%	\centering
-%	\includegraphics[width=.8\textwidth]{D:/pic.png}
-%	\caption{這是標題}
-%\end{figure}
 
 
 
